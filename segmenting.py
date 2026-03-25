@@ -6,11 +6,7 @@ def get_unique_label(dataset):
     dict_text = defaultdict(list)
     for k, v in zip(dataset["Sequence"], dataset["Label"]):
         if v not in dict_text[k]:
-            #print(f"{v} not in {dict_text[k]}")
             dict_text[k].append(v)
-        else:
-            #print(f"{v} in {dict_text[k]}")
-            pass
     return dict_text
 
 
@@ -21,7 +17,7 @@ def segmenter(sent, segm):
 
 def data_label_dict(dataframe, segm):
     unseg_dict = get_unique_label(dataframe)
-    seg_dict = dict()  #defaultdict(list)
+    seg_dict = {}
     for k, v in unseg_dict.items():
         seg_dict[segmenter(k, segm)] = v
     return seg_dict
